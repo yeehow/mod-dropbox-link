@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Krunker Mod Link</title>
     <style>
         @font-face {
             font-family: 'gamefont';
@@ -28,22 +28,35 @@
 <body>
     <p>Krunker Mod Dropbox Link</p>
 
-    <input type="text" placeholder="Mod Name" id="name">
-    <button onclick="find()">Find</button>
+    <input type="text" placeholder="Mod Name" id="name" autofocus>
+    <button onclick="find()" id="find">Find</button>
 
     <br><br>
     <a href="https://yee.how" class="yeehow">yeehow</a>
 
     <script>
-        async function find() {
-            var name = document.getElementById("name").value;
+        var input = document.getElementById("name");
 
-            if (!name) {
+        input.addEventListener("keyup", function (event) {
+            if (event.keyCode === 13) {
+                event.preventDefault();
+                document.getElementById("find").click();
+            }
+        });
+
+        async function find() {
+
+            if (!input) {
                 return;
             }
 
-            var get = await fetch(`https://api.krunker.io/search?type=mod&val=${name}`);
+            var get = await fetch(`https://api.krunker.io/search?type=mod&val=${input.value}`);
             var json = await get.json();
+            if (!json.data[0]) {
+                input.value = "";
+                alert("Mod not found");
+                return;
+            }
             window.location.href = json.data[0].mod_url;
 
         }
