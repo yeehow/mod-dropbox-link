@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Krunker Mod Link</title>
+    <title>Krunker Mod Viewer</title>
     <style>
         @font-face {
             font-family: 'gamefont';
@@ -22,20 +22,46 @@
         a {
             color: #0000ff
         }
+
+        .mod {
+            background-color: rgba(0, 0, 0, .4);
+            padding: 4px;
+            border-radius: 4px;
+            border: 3px solid rgba(0, 0, 0, .6);
+            width: 275px;
+            margin-top: 20px;
+        }
+
+        .mod p {
+            margin-top: 1px;
+            margin-bottom: 0;
+            color: rgba(0, 0, 0, .6);
+        }
+
+        .mod span {
+            color: rgba(0, 0, 0, 0.4);
+        }
+
+        img {
+            height: 125px;
+            width: inherit;
+            object-fit: cover;
+        }
     </style>
 </head>
 
 <body>
-    <p>Krunker Mod Dropbox Link</p>
+    <p>Krunker Mod Viewer &nbsp; <a href="https://yee.how" class="yeehow">yeehow</a></p>
 
-    <input type="text" placeholder="Mod Name" id="name" autofocus>
+    <input type="text" placeholder="Mod Name" id="name" autofocus autocomplete="off">
     <button onclick="find()" id="find">Find</button>
 
-    <br><br>
-    <a href="https://yee.how" class="yeehow">yeehow</a>
+    <div id="list">
+    </div>
 
     <script>
         var input = document.getElementById("name");
+        var list = document.getElementById("list");
 
         input.addEventListener("keyup", function (event) {
             if (event.keyCode === 13) {
@@ -46,20 +72,52 @@
 
         async function find() {
 
-            if (!input) {
-                return;
-            }
+            clearMods();
 
             var get = await fetch(`https://api.krunker.io/search?type=mod&val=${input.value}`);
             var json = await get.json();
-            if (!json.data[0]) {
-                input.value = "";
-                alert("Mod not found");
-                return;
-            }
-            window.location.href = json.data[0].mod_url;
 
+            json.data.forEach(element => {
+                addMod(element);
+            });
         }
+
+        function addMod(element) {
+
+            var link = document.createElement("a");
+
+            if (element.mod_url == "ua") {
+                link.href = `https://user-assets.krunker.io/md${element.mod_id}/mod.zip`
+            } else {
+                link.href = element.mod_url;
+            }
+
+            var div = document.createElement("div");
+            div.className = "mod";
+
+            var img = document.createElement("img");
+            img.src = `https://user-assets.krunker.io/md${element.mod_id}/thumb.png`;
+            div.appendChild(img);
+
+            var name = document.createElement("p");
+            name.textContent = element.mod_name;
+            div.appendChild(name);
+
+            var creator = document.createElement("p");
+            creator.innerHTML = `<span>by </span>${element.creatorname}`;
+            div.appendChild(creator);
+
+            link.appendChild(div);
+
+            list.appendChild(link);
+        }
+
+        function clearMods() {
+            list.innerHTML = "";
+        }
+
+        find();
+
     </script>
 </body>
 
