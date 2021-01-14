@@ -1,0 +1,106 @@
+@font-face {
+    font-family: 'gamefont';
+    src: url('./font2.ttf');
+}
+
+
+
+body {
+    
+    background-size: contain;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    background-color: #171c28;
+    color: #fff;
+    font-family: gamefont;
+}
+
+
+
+html,
+body,
+button {
+    font-family: 'gamefont' !important;
+}
+
+a {
+    color: #0000ff
+}
+
+.mod {
+    background-color:  #171c28;
+    padding: 4px;
+    border-radius: 4px;
+    border: 3px solid rgba(0, 0, 0, .6);
+    width: 275px;
+    margin-top: 20px;
+}
+
+.mod p {
+    margin-top: 1px;
+    margin-bottom: 0;
+    color: #fff;
+    text-shadow: -1px -1px 0 #202020, 1px -1px 0 #202020, -1px 1px 0 #202020, 1px 1px 0 #202020, -2px -2px 0 #202020, 2px -2px 0 #202020, -2px 2px 0 #202020, 2px 2px 0 #202020, -3px -3px 0 #202020, 3px -3px 0 #202020, -3px 3px 0 #202020, 3px 3px 0 #202020;
+
+}
+
+.mod span {
+    color: rgba(97, 97, 97, 0.672);
+}
+
+img {
+    height: 125px;
+    width: inherit;
+    object-fit: cover;
+}
+
+a {
+    text-decoration: none;
+    color: #fff;
+    display: inline;
+  }
+
+  input {
+    font-family: gamefont;
+    font-size: 16px;
+    color: #171c28;
+    padding: 0.5rem 1rem;
+    margin-right: 0.5rem;
+    margin-top: 0.5rem;
+    border-radius: 0.5rem;
+    border: none;
+    width: 200px;
+}
+
+input:focus {
+    outline: none;
+}
+
+
+
+
+h1 {
+    display: inline;
+ 
+    margin: 8px;
+    width: 200px;
+    height: 200px;
+    padding: 10px;
+}
+#Startpage{
+    font-size: 120%;
+}
+
+
+.mod{
+    display: inline-block;
+    position: relative;
+    background-color: rgb(0, 0, 0, 0.2);
+    border-radius: 20px;
+    border-width: 5px;
+    border-style: solid;
+    margin: 8px;
+    width: 205px;
+    height: 200px;
+    padding: 10px;
+    
+}
